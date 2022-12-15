@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "trabalhoPrmo",
-    "slug": "trabalhoPrmo",
+    "name": "Weather App",
+    "slug": "rnWeatherApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.rnweatherapp.myapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"

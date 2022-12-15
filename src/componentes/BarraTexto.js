@@ -23,10 +23,9 @@ export default function BarraTexto({ }){
 }
 const styles = StyleSheet.create({
     container:{
-        marginTop:20,
+        marginTop:30,
         marginBottom:20,
         width: '85%',
-        paddingTop: 20,
         flexDirection: 'row',
         alignItems:'flex-start',
         justifyContent: 'space-between',

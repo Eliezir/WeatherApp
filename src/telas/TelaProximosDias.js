@@ -1,24 +1,36 @@
-import React, { useState } from 'react'
-import {View, StyleSheet,Image} from 'react-native';
+import React, { useState,useEffect } from 'react'
+import {View, StyleSheet} from 'react-native';
 import LinhaDia from '../componentes/LinhaDia.js';
 import Texto from '../componentes/Texto.js';
 import BarraTextoTela2 from '../componentes/BarraTextoTela2.js';
 import {temp} from '../componentes/LinhaDia.js';
 const weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+ 
+import api2,{api} from '../services/apiDaily'
 
 function GetLinha (props){
-    const[data,setData] = useState({})
-
-    const API_KEY ='f513209bdb0890ce3722a8b63edbb556'
-    const lat = '-9.665';
-    const lon='-35.7353';
-    const location = 'Maceió'
-   /*  const urlDaily = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}` */
-   const urlOneCall =" https://api.openweathermap.org/data/2.5/onecall?lat=-9.665&lon=-35.7353&exclude=daily,minutely&cnt=24&units=metric&appid=f513209bdb0890ce3722a8b63edbb556"
-   const urlDaily = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${location}&units=metric&cnt=8&appid=${API_KEY}`
-    const urlClimate = `https://pro.openweathermap.org/data/2.5/forecast/climate?q=${location}&units=metric&units=metric&appid=${API_KEY}`
-
+    const [data, setData] = useState({});
+    const [url, setUrl] = useState(api);
+  
+    useEffect(() => {
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data);
+        });
+    }, [url]);
+    useEffect(() => {
+      (async function () {
+        setUrl(
+          await api2()
+            .then((response) => response)
+            .then((data) => {
+              return data;
+            })
+        );
+      })();
+    }, []);
 
     function unixToWeekday(unix){
         var timestamp = new Date(unix*1000)
@@ -38,9 +50,6 @@ function GetLinha (props){
     
 
 
-    fetch(urlDaily).then(res => res.json()).then(data => {
-        setData(data)
-    })
  
     return(
         <LinhaDia x = {2} imgTempo = {`http://openweathermap.org/img/wn/${data.list ? data.list[props.x].weather[0].icon :null}@4x.png` } dia={unixToWeekday(data.list ? data.list[props.x].dt:null)} data={unixToDate(data.list ? data.list[props.x].dt:null)} tprin={Math.round(data.list ? data.list[props.x].temp.max:null)+'º'} tsec={Math.round(data.list ? data.list[props.x].temp.min:null)+'º'} t1={21} t2={16} c1='#E4EDFF' c2 ='#9EBBFF'  />
@@ -54,11 +63,11 @@ export default function TelaProximosDias() {
    const time = 1662904800 * 1000;
    const objDate = new Date(time);
    const humanDateFormat = objDate.toLocaleString();
-   console.log(humanDateFormat)
+
    const time2 = 1662991200 * 1000;
    const objDate2 = new Date(time2);
    const humanDateFormat2 = objDate2.toLocaleString();
-   console.log(humanDateFormat2)
+
 
 
 
@@ -80,13 +89,6 @@ export default function TelaProximosDias() {
                 <GetLinha x={5}/>
                 <GetLinha x={6}/>
                 <GetLinha x={7}/>
-               {/*  <LinhaDia imgTempo = {heavyRain} dia='Tuesday' data=' / 4 oct' tprin='22' tsec=' / 23°' t1={21} t2={16} c1='#E4EDFF' c2 ='#9EBBFF'/>
-                <LinhaDia imgTempo = {sun} dia='Wednesday' data=' / 5 oct' tprin='30' tsec=' / 31°' t1={21} t2={16} c1='#E4EDFF' c2 ='#9EBBFF'/>
-                <LinhaDia imgTempo = {clouds} dia='Thursday' data=' / 6 oct' tprin='24' tsec=' / 26°' t1={21} t2={16} c1='#E4EDFF' c2 ='#9EBBFF'/>
-                <LinhaDia imgTempo = {cloudy} dia='Friday' data=' / 7 oct' tprin='26' tsec=' / 27°' t1={21} t2={16} c1='#E4EDFF' c2 ='#9EBBFF'/>
-                <LinhaDia imgTempo = {cloudy} dia='Saturday' data=' / 8 oct' tprin='27' tsec=' / 28°' t1={21} t2={16} c1='#E4EDFF' c2 ='#9EBBFF'/>
-                <LinhaDia imgTempo = {heavyRain} dia='Sunday' data=' /  oct' tprin='22' tsec=' / 23°' t1={21} t2={16} c1='#E4EDFF' c2 ='#9EBBFF'/> */}
-
             </View>
         </View>
     )
