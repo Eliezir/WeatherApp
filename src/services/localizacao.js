@@ -5,6 +5,7 @@ export default async () => {
     if (status !== 'granted') {
       return;
     }
+
     return await Location.getCurrentPositionAsync({});
 
   }

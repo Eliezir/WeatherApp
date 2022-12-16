@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { View,StyleSheet,Image } from 'react-native';
 import Texto from './Texto.js';
 const weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
+import api2, { api } from "../services/apiOneCall";
 
 export default function StatusHoje() {
 
@@ -26,26 +27,30 @@ function unixToDate(unix){
 
 
 
-const[data,setData] = useState({})
-/* const[location,setLocation] = useState({}) */
+const [data, setData] = useState({});
+const [url, setUrl] = useState(api);
+useEffect(() => {
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      setData(data);
+    });
+}, [url]);
+useEffect(() => {
+  (async function () {
+    setUrl(
+      await api2()
+        .then((response) => response)
+        .then((data) => {
+          return data;
+        })
+    );
+  })();
+}, []);
 
-const API_KEY2 ='49cc8c821cd2aff9af04c9f98c36eb74';
-const API_KEY ='f513209bdb0890ce3722a8b63edbb556'
-const location = 'Maceió'
-const lat = '-9.647906';
-const lon='-35.734695';
-/* const url2 = `https://api.weatherbit.io/v2.0/history/hourly?city=${location}&start_date=2022-09-07&end_date=2022-09-08&tz=local&key=${api_key}` */
-
-const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${API_KEY}`;
-const urlOneCall = `https://api.openweathermap.org/data/2.5/onecall?lat=-9.665&lon=-35.7353&exclude=daily,minutely&cnt=24&units=metric&appid=${API_KEY}`
 
 
-/*   axios.get(url).then((response) => {
-    setData(response.data)
-  }) */
-
-
-fetch(urlOneCall).then(res => res.json()).then(data => {
+fetch(url).then(res => res.json()).then(data => {
     setData(data)
 })
 
