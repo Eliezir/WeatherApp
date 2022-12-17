@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { View, StyleSheet, ScrollView,TouchableOpacity } from "react-native";
 import CardPrevisao from "./cardTempo";
 var x = 0;
 const corHora = "#141414a3";
@@ -27,11 +26,7 @@ function GetCard(props) {
 
   if (props.horario != "current")
     return (
-      <TouchableOpacity
-        onLongPress={() => {
-          alert("teste");
-        }}
-      >
+      <TouchableOpacity>
         <CardPrevisao
           status={props.status}
           txtHora={
