@@ -27,12 +27,13 @@ export default function BlocoInformacoes(props) {
     })();
   }, []);
 
-  const dataType = props.type == 0 ? data.current: data.hourly;
-  var vento = Math.round((data.current ? data.current.wind_speed : null) * 3.6);
-  var feels = Math.round(data.current ? data.current.feels_like : null);
-  var uvi = data.current ? data.current.uvi : null;
-  var pressure = data.current ? data.current.pressure : null;
+  const dataType = props.type == 0 ? data.current: data.hourly[props.type];
+  const dataTypeLoad = props.type == 0 ? data.current: data.hourly;
 
+  var vento = Math.round((dataTypeLoad ? dataType.wind_speed : null) * 3.6);
+  var feels = Math.round(dataTypeLoad ? dataType.feels_like : null);
+  var uvi = dataTypeLoad ? dataType.uvi : null;
+  var pressure = dataTypeLoad ? dataType.pressure : null;
   return (
     <View style={styles.container}>
       <InformacoesHoje

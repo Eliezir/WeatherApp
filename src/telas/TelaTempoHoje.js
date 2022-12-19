@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { View, StyleSheet } from 'react-native';
-import TempoHoje from '../componentes/TempoHoje.js';
+/* import TempoHoje from '../componentes/TempoHoje.js'; */
 import Localizacao from '../componentes/Localizacao.js';
 import BarraTexto from '../componentes/BarraTexto.js';
 import Icon from 'react-native-vector-icons/Feather';
@@ -35,8 +35,8 @@ export default function TelaTempoHoje() {
             </View>
 
             <Localizacao tam1={30} tam2={26} cor1='#1D1D1D' cor2='#646464' />
-            <TempoHoje />
-            <BarraTexto />
+          {/*   <TempoHoje /> */}
+          {/*   <BarraTexto /> */}
             <ContainerPrevisao />
         </View>
     )

@@ -6,7 +6,7 @@ const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov
 
 import api2, { api } from "../services/apiOneCall";
 
-export default function StatusHoje() {
+export default function StatusHoje(props) {
 
   function unixToWeekday(unix){
     var timestamp = new Date(unix*1000)
@@ -62,10 +62,12 @@ fetch(url).then(res => res.json()).then(data => {
 })
 
 
-var temperatura =  Math.round(data.current? data.current.temp :null);
-var tempo = data.current ? data.current.weather[0].main : null;
-var weatherICON = data.current ? data.current.weather[0].icon :null;
-var timestamp = data.current ? data.current.dt : null;
+const dataTypeLoad = props.type == 0 ? data.current: data.hourly;
+const dataType = props.type == 0 ? data.current: data.hourly[props.type];
+var temperatura =  Math.round(dataTypeLoad? dataType.temp :null);
+var tempo = dataTypeLoad ? dataType.weather[0].main : null;
+var weatherICON = dataTypeLoad ? dataType.weather[0].icon :null;
+var timestamp = dataTypeLoad ? dataType.dt : null;
 const img = {uri: 'http://openweathermap.org/img/wn/'+ weatherICON +'@4x.png'}
 
 

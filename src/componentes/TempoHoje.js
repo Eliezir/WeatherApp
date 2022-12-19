@@ -2,13 +2,17 @@
 import {View, StyleSheet} from 'react-native';
 import StatusHoje from './BlocoDia.js';
 import BlocoInformacoes from "./BlocoInformacoes.js"
+import BarraTexto from '../componentes/BarraTexto.js';
 
 export default function TempoHoje(props){
     return (
+        <>
         <View style={styles.container}>
-        <StatusHoje/>
-        <BlocoInformacoes type="0"/>
+        <StatusHoje type={props.activeCard}/>
+        <BlocoInformacoes type={props.activeCard}/>
         </View>
+        <BarraTexto />
+        </>
     )
 }
 

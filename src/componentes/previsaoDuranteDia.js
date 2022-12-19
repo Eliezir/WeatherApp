@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, ScrollView,TouchableOpacity } from "react-native";
 import CardPrevisao from "./cardTempo";
+import TempoHoje from '../componentes/TempoHoje.js';
+
 var x = 0;
-const corHora = "#141414a3";
-const corTemp = "#141414";
-const corMain = "White";
+
 
 import api2, { api } from "../services/apiOneCall";
 
@@ -26,51 +26,26 @@ function GetCard(props) {
   ) {
     x++;
   }
+    return (
+      <TouchableOpacity onPress={props.status == 2 ? null : props.function}>
+      <CardPrevisao
+        status={props.status}
+        txtHora= {props.id == 0 ? "Now" : unixToHour(props.data.hourly ? props.data.hourly[x + props.id].dt : null) + ":00"}
+        corH={props.status == 2 ? "#f4f4f4" : "#141414a3"}
+        corT={props.status == 2 ? "#ffffff" : "#141414"}
+        txtTemperatura={props.id == 0 ? Math.round(props.data.current ? props.data.current.temp : null) +"º": Math.round(props.data.hourly ? props.data.hourly[x + props.id].temp : null) + "º"}
+        imgTempo={`http://openweathermap.org/img/wn/${props.id == 0 ? props.data.current ? props.data.current.weather[0].icon : null : props.data.hourly? props.data.hourly[props.id + x].weather[0].icon
+        : null}@2x.png`}
+      />
+    </TouchableOpacity>
+    );
 
-  if (props.status == 1)
-    return (
-      <TouchableOpacity onPress={props.function}>
-        <CardPrevisao
-          status={props.status}
-          txtHora= {props.id == 0 ? "Now" : unixToHour(props.data.hourly ? props.data.hourly[x + props.id].dt : null) + ":00"}
-          txtTemperatura={
-            Math.round(
-              props.data.hourly ? props.data.hourly[x + props.id].temp : null
-            ) + "º"
-          }
-          corH={corHora}
-          corT={corTemp}
-          imgTempo={`http://openweathermap.org/img/wn/${
-            props.data.hourly
-              ? props.data.hourly[props.id + x].weather[0].icon
-              : null
-          }@2x.png`}
-        />
-      </TouchableOpacity>
-    );
-  else if (props.status == 2) {
-    return (
-      <TouchableOpacity>
-        <CardPrevisao
-          status={props.status}
-          txtHora= {props.id == 0 ? "Now" : unixToHour(props.data.hourly ? props.data.hourly[x + props.id].dt : null) + ":00"}
-          corH={"#f4f4f4"}
-          corT={"#ffff"}
-          txtTemperatura={
-            Math.round(props.data.current ? props.data.current.temp : null) +
-            "º"
-          }
-          imgTempo={`http://openweathermap.org/img/wn/${
-            props.data.current ? props.data.current.weather[0].icon : null
-          }@2x.png`}
-        />
-      </TouchableOpacity>
-    );
   }
-}
+
 
 export default function ContainerPrevisao(props) {
   const [data, setData] = useState({});
+  const [activeCard, setActiveCard] = useState(0);
   const [url, setUrl] = useState(api);
   const [cards, setCards] = useState([
     { id: 0,  status: 2 },
@@ -92,6 +67,7 @@ export default function ContainerPrevisao(props) {
       card.status=1
     })
   setCards([...cards],cards[index].status=2)
+  setActiveCard(index*2)
     }
 
   useEffect(() => {
@@ -116,6 +92,8 @@ export default function ContainerPrevisao(props) {
 
 
   return (
+    <>
+    <TempoHoje activeCard={activeCard}/> 
     <View style={styles.container}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {cards.map((card, index) => (
@@ -130,6 +108,7 @@ export default function ContainerPrevisao(props) {
         ))}
       </ScrollView>
     </View>
+    </>
   );
 }
 
