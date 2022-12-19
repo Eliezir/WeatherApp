@@ -25,6 +25,13 @@ function unixToDate(unix){
 }
 
 
+function unixToHours(unix){
+    var timestamp = new Date(unix*1000)
+    var formatted = timestamp;
+    var hours = String(formatted.toLocaleTimeString());
+    return(hours.slice(0,5))
+}
+
 
 
 const [data, setData] = useState({});
@@ -68,6 +75,7 @@ const img = {uri: 'http://openweathermap.org/img/wn/'+ weatherICON +'@4x.png'}
     <Image style={styles.imgWeatherDia} source={img}/>
     <Texto  texto={tempo} negrito="bold" tamanho={24} cor='#ffff'/>
     <Texto  texto={`${unixToWeekday(timestamp)}, ${unixToDate(timestamp)}`} negrito="bold" tamanho={13} cor='#8DB2FB'/>
+    <Texto  texto={unixToHours(timestamp)} negrito="bold" tamanho={13} cor='#8DB2FB'/>
    </View>
    <View style={styles.divContainer}><Texto  texto={temperatura} negrito="bold" tamanho={80} cor='#ffff'/></View>  
    </View>

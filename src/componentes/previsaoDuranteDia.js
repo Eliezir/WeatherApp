@@ -8,6 +8,9 @@ const corMain = "White";
 
 import api2, { api } from "../services/apiOneCall";
 
+
+
+
 function GetCard(props) {
   function unixToHour(unix) {
     var timestamp = new Date(unix * 1000);
@@ -24,37 +27,33 @@ function GetCard(props) {
     x++;
   }
 
-  if (props.horario != "current")
+  if (props.status == 1)
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={props.function}>
         <CardPrevisao
           status={props.status}
-          txtHora={
-            unixToHour(
-              props.data.hourly ? props.data.hourly[x + props.y].dt : null
-            ) + ":00"
-          }
+          txtHora= {props.id == 0 ? "Now" : unixToHour(props.data.hourly ? props.data.hourly[x + props.id].dt : null) + ":00"}
           txtTemperatura={
             Math.round(
-              props.data.hourly ? props.data.hourly[x + props.y].temp : null
+              props.data.hourly ? props.data.hourly[x + props.id].temp : null
             ) + "º"
           }
           corH={corHora}
           corT={corTemp}
           imgTempo={`http://openweathermap.org/img/wn/${
             props.data.hourly
-              ? props.data.hourly[props.y + x].weather[0].icon
+              ? props.data.hourly[props.id + x].weather[0].icon
               : null
           }@2x.png`}
         />
       </TouchableOpacity>
     );
-  else if (props.horario == "current") {
+  else if (props.status == 2) {
     return (
       <TouchableOpacity>
         <CardPrevisao
           status={props.status}
-          txtHora="Now"
+          txtHora= {props.id == 0 ? "Now" : unixToHour(props.data.hourly ? props.data.hourly[x + props.id].dt : null) + ":00"}
           corH={"#f4f4f4"}
           corT={"#ffff"}
           txtTemperatura={
@@ -73,6 +72,27 @@ function GetCard(props) {
 export default function ContainerPrevisao(props) {
   const [data, setData] = useState({});
   const [url, setUrl] = useState(api);
+  const [cards, setCards] = useState([
+    { id: 0,  status: 2 },
+    { id: 2,  status: 1 },
+    { id: 4,  status: 1 },
+    { id: 6,  status: 1 },
+    { id: 8,  status: 1 },
+    { id: 10, status: 1 },
+    { id: 12, status: 1 },
+    { id: 14, status: 1 },
+    { id: 16, status: 1 },
+    { id: 18, status: 1 },
+    { id: 20, status: 1 },
+    { id: 22, status: 1 },
+  ]);
+
+  const setActive = (index) =>{
+    cards.forEach(card =>{
+      card.status=1
+    })
+  setCards([...cards],cards[index].status=2)
+    }
 
   useEffect(() => {
     fetch(url)
@@ -93,20 +113,7 @@ export default function ContainerPrevisao(props) {
     })();
   }, []);
 
-  const [cards, setCards] = useState([
-    { id: 0, status: 2, horario: "current" },
-    { id: 2, status: 1 },
-    { id: 4, status: 1 },
-    { id: 6, status: 1 },
-    { id: 8, status: 1 },
-    { id: 10, status: 1 },
-    { id: 12, status: 1 },
-    { id: 14, status: 1 },
-    { id: 16, status: 1 },
-    { id: 18, status: 1 },
-    { id: 20, status: 1 },
-    { id: 22, status: 1 },
-  ]);
+
 
   return (
     <View style={styles.container}>
@@ -114,10 +121,11 @@ export default function ContainerPrevisao(props) {
         {cards.map((card, index) => (
           <GetCard
             data={data}
-            y={card.id}
+            id={card.id}
             horario={card.horario}
             key={card.id}
             status={card.status}
+            function={()=>{setActive(index)}}
           />
         ))}
       </ScrollView>

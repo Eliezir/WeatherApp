@@ -7,7 +7,7 @@ export default function TempoHoje(props){
     return (
         <View style={styles.container}>
         <StatusHoje/>
-        <BlocoInformacoes/>
+        <BlocoInformacoes type="0"/>
         </View>
     )
 }
