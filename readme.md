@@ -1,18 +1,20 @@
-<h1 align="center">🌧 𝗪𝗲𝗮𝘁𝗵𝗲𝗿𝗔𝗽𝗽 🌤</h1>
+
+<h1 align="center">𝗪𝗲𝗮𝘁𝗵𝗲𝗿𝗔𝗽𝗽  <img style="height:50px" src="https://media.giphy.com/media/R63jsBXjIuCi7H1MuF/giphy.gif"></h1>
 <p align="center">
 A react native weather app for a school project
 </p>
+
 <div align="center">
   <a href="#technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#how-to-use">How To Use</a>
 </div>
+<br>
 
->Status: Done ✅
 <div align="center">
   <img style="height:586px"src="WeatherAppGif.gif">
 </div>
 
-
+>Status: Done ✅
 <h2 id="technologies">💻 Technologies Used</h2>
 <ul>
 <li>React Native</li>
@@ -47,4 +49,5 @@ $ npm install
 # Run the application
 $ expo start
 ```
-<sub>Made with 💜 by <a href="https://github.com/Eliezir">Eliezir Neto</a></sub>
+
+<sub>Made with 💜 by <a href="https://github.com/Eliezir">Eliezir Neto</a> </sub>
