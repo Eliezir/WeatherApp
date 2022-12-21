@@ -9,8 +9,8 @@ export const api = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${l
 export default async() => {
     let cord;
     await loc().then(response=>response).then(data=>{cord = data})
-    const lat =  cord.coords.latitude;
-    const long = cord.coords.longitude
+    const lat =  cord.latitude;
+    const long = cord.longitude
     const api = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${long}&units=metric&cnt=8&appid=${API_KEY}`
     return api;
 }

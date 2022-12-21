@@ -4,9 +4,14 @@ import InformacoesHoje from "./informacoes.js";
 
 import api2, { api } from "../services/apiOneCall";
 
+
+
+
 export default function BlocoInformacoes(props) {
   const [data, setData] = useState({});
   const [url, setUrl] = useState(api);
+
+
 
   useEffect(() => {
     fetch(url)
@@ -27,8 +32,8 @@ export default function BlocoInformacoes(props) {
     })();
   }, []);
 
-  const dataType = props.type == 0 ? data.current: data.hourly[props.type];
-  const dataTypeLoad = props.type == 0 ? data.current: data.hourly;
+  const dataType  = props.type == 0 || props.type == 1  ? data.current: data.hourly[props.type];
+  const dataTypeLoad  = props.type == 0 || props.type == 1  ? data.current: data.hourly;
 
   var vento = Math.round((dataTypeLoad ? dataType.wind_speed : null) * 3.6);
   var feels = Math.round(dataTypeLoad ? dataType.feels_like : null);

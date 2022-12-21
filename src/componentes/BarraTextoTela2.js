@@ -13,7 +13,7 @@ export default function BarraTextoTela2(){
                 <Icon name="chevron-left" size= {15} color='#E6EEFF' style={{paddingLeft: 8}}/></TouchableOpacity>
              </View>
              <View style={styles.div2}>
-                <Localizacao tam1={21} tam2={17} cor1='#D9E5FF' cor2='#D9E5FF'/>
+                <Localizacao tam1={21} tam2={17} cor1='#F5F5F5' cor2='#DBE9FA'/>
             </View>
         </View>
     ) 
@@ -30,11 +30,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',  
         alignItems:'center', 
         justifyContent:'flex-start',
-        width: '36%',
+        width: '16%',
    },
    div2:{
     flexDirection: 'row',  
     justifyContent:'flex-start',
-    width: '65%',
+
 }
 })

@@ -13,7 +13,7 @@ export default function Localizacao(props){
         (async function () {
   await local().then((response) => response).then((data) => {
     setCity(data[0].city != null ? data[0].city: data[0].subregion);
-    setDistrict(data[0].district != null ? data[0].district: data[0].subregion);
+    setDistrict(data[0].district != null ? data[0].district: data[0].city);
 })
 
         })();

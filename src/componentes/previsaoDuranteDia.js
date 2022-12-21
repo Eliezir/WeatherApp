@@ -67,7 +67,7 @@ export default function ContainerPrevisao(props) {
       card.status=1
     })
   setCards([...cards],cards[index].status=2)
-  setActiveCard(index*2)
+  setActiveCard(index*2 + x)
     }
 
   useEffect(() => {
@@ -78,6 +78,7 @@ export default function ContainerPrevisao(props) {
       });
   }, [url]);
   useEffect(() => {
+
     (async function () {
       setUrl(
         await api2()

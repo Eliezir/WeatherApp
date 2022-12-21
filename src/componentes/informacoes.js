@@ -9,7 +9,7 @@ export default function InformacoesHoje(props){
     return (
         <View style={[styles.container,{backgroundColor:props.color,borderLeftWidth:props.borderLeft}]}> 
         <View><Icon name={props.icone} size= {30} color='#ffff'/></View>
-        <View style={{marginLeft: 10, height:'100%', display:'flex', justifyContent:'space-evenly'}}>
+        <View style={styles.infoContainer}>
         <Texto texto={props.txtTipo} negrito='row' tamanho={13} cor="#f0f8ffa6"/>
         <Texto texto={props.txtValor} negrito='bold' tamanho={13} cor="#ffff"/>
         </View>
@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
         display:'flex',
         flexDirection: 'row',
         justifyContent:'space-evenly',
-      
-    }
+    },
+    infoContainer:{
+        marginLeft: 10, 
+        width:'45%'}
+
 })

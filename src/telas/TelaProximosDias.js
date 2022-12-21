@@ -47,7 +47,7 @@ const styles = StyleSheet.create ({
         width: '85%',
         alignItems: 'flex-start',
         justifyContent: 'flex-end',
-        paddingTop: 10,
+        marginTop: 40,
         height: '12%'
        
     },div2: {

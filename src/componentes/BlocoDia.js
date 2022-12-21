@@ -6,6 +6,8 @@ const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov
 
 import api2, { api } from "../services/apiOneCall";
 
+
+
 export default function StatusHoje(props) {
 
   function unixToWeekday(unix){
@@ -62,8 +64,8 @@ fetch(url).then(res => res.json()).then(data => {
 })
 
 
-const dataTypeLoad = props.type == 0 ? data.current: data.hourly;
-const dataType = props.type == 0 ? data.current: data.hourly[props.type];
+const dataTypeLoad= props.type == 0 || props.type == 1  ? data.current: data.hourly;
+const dataType = props.type == 0 || props.type == 1  ? data.current: data.hourly[props.type];
 var temperatura =  Math.round(dataTypeLoad? dataType.temp :null);
 var tempo = dataTypeLoad ? dataType.weather[0].main : null;
 var weatherICON = dataTypeLoad ? dataType.weather[0].icon :null;
