@@ -3,7 +3,6 @@
 A react native weather app for a school project
 </p>
 <div align="center">
-  <a href="#links">Links</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#how-to-use">How To Use</a>
 </div>
@@ -47,7 +46,3 @@ $ npm install
 $ expo start
 ```
 <sub>Made with 💜 by <a href="https://github.com/Eliezir">Eliezir Neto</a></sub>
-
-
-<h3>✉ Get in touch</h3>
-<p><span style="margin-right: 30px;"></span><a href="https://www.linkedin.com/in/eliezir-moreira-9ba301216/"><img target="_blank" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" style="width: 5%;"></a><span style="margin-right: 30px;"></span><a href="https://github.com/Eliezir"><img target="_blank" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" style="width: 5%;"></a></p>
