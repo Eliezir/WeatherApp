@@ -8,7 +8,9 @@ A react native weather app for a school project
 </div>
 
 >Status: Done ✅
-
+<div align="center">
+  <img style="height:586px"src="WeatherAppGif.gif">
+</div>
 
 
 <h2 id="technologies">💻 Technologies Used</h2>
